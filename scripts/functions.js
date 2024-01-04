@@ -60,7 +60,29 @@ const sortDateData = (dataArray) => {
 }
 
 
+
+//FUNCTION TO GET THE SUM OF ALL REPOS STARS
+
+const  getSumOfReposStars = () => {
+
+  return getData().then(data => {
+    const dataArray = Object.values(data);
+    const sumOfStars = getSum(dataArray);
+    return sumOfStars;
+  })
+
+}
+
+const getSum = (dataArray) => { 
+  return dataArray.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+}
+
+
 module.exports = {
   getReposMoreThanFiveStars: getReposMoreThanFiveStars,
-  getLastUpdatedRepos: getLastUpdatedRepos
+  getLastUpdatedRepos: getLastUpdatedRepos,
+  getSumOfReposStars: getSumOfReposStars
 };
+
+
+
