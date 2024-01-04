@@ -35,18 +35,24 @@ const getReposMoreThanFiveStars = () => {
 // FUCNTIONS TO RETURN THE 5 LAST UPDATED REPOS
 
 
-const  getLastUpdatedRepos = (dataArray) => {
+const  getLastUpdatedRepos = () => {
 
   return getData().then(data => {
     const dataArray = Object.values(data);
     const sortedData = sortDateData(dataArray);
-    const lastFiveRepos = sortedData.slice(0, 5);
-    const lastFiveReposNames = lastFiveRepos.map(repo => return { name: repo.name, stars: repo.stargazers_count });
-    return lastFiveReposNames;
+    const lastFiveRepos = getTopFive(sortedData)
+   .map(repo => {return { name: repo.name, stars: repo.updated_at }});
+    return lastFiveRepos;
   })
 
 }
 
+
+const getTopFive = (dataArray) => {
+  
+    return dataArray.slice(0, 5);
+  
+}
 
 const sortDateData = (dataArray) => {
 
@@ -55,5 +61,6 @@ const sortDateData = (dataArray) => {
 
 
 module.exports = {
-  getReposMoreThanFiveStars: getReposMoreThanFiveStars
+  getReposMoreThanFiveStars: getReposMoreThanFiveStars,
+  getLastUpdatedRepos: getLastUpdatedRepos
 };

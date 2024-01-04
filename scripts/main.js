@@ -1,3 +1,6 @@
 const { getReposMoreThanFiveStars: getReposMoreThanFiveStars } = require("./functions");
-console.log("Top five repos");
+const { getLastUpdatedRepos: getLastUpdatedRepos } = require("./functions");
+
 getReposMoreThanFiveStars().then(data => console.log(data));
+
+getLastUpdatedRepos().then(data => console.log(data));
