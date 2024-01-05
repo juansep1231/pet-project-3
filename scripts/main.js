@@ -1,34 +1,4 @@
 
-/*
-import axios from "axios"
-
-
-const apiUrl = "https://api.github.com/orgs/stackbuilders/repos";
-
-document.getElementById("getTopFive").addEventListener("click", getTopFiveRepos);
-
-
-function getTopFiveRepos(){
-
-    repos = axios({
-        method: 'get',
-        url: apiUrl,
-        headers: {
-          'content-type': 'application/json'
-        }
-      }).then(function (response) {
-        //handle success
-        console.log(response);
-        return response;
-      }).catch(function (response) {
-        //handle error
-        console.log(response);
-      });
-
-
-}
-*/
-
 const apiUrl = "https://api.github.com/orgs/stackbuilders/repos";
 
 document.getElementById("getTopFive").addEventListener("click", getTopFiveRepos);
