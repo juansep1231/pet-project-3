@@ -1,19 +1,16 @@
 const {
-  getReposMoreThanFiveStars: getReposMoreThanFiveStars,
-} = require("./functionsAsyncAwait");
-const {
-  getLastUpdatedRepos: getLastUpdatedRepos,
-} = require("./functionsAsyncAwait");
-const {
-  getSumOfReposStars: getSumOfReposStars,
+  getReposMoreThanFiveStars,
+  getLastUpdatedRepos,
+  getSumOfReposStars,
+  getArrayOfData,
 } = require("./functionsAsyncAwait");
 
-getReposMoreThanFiveStars().then((data) =>
-  console.log("Repos with more than five stars" + data)
-);
-
-getLastUpdatedRepos().then((data) => console.log("Last updated repos " + data));
-
-getSumOfReposStars().then((data) =>
-  console.log("SUm of all repos stars" + data)
-);
+getArrayOfData()
+  .then((data) => {
+    console.log(getReposMoreThanFiveStars(data));
+    console.log(getLastUpdatedRepos(data));
+    console.log(getSumOfReposStars(data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });

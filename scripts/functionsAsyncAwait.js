@@ -20,32 +20,21 @@ const getFilteredsStargazers = (data) => {
   return data.filter((repo) => repo.stargazers_count > 5);
 };
 
-const getReposMoreThanFiveStars = async () => {
-  try {
-    const dataArray = await getArrayOfData();
-    const filteredData = getFilteredsStargazers(dataArray).map((repo) => {
-      return { name: repo.name, stars: repo.stargazers_count };
-    });
-
-    return filteredData;
-  } catch (error) {
-    console.log(error);
-  }
+const getReposMoreThanFiveStars = (dataArray) => {
+  const filteredData = getFilteredsStargazers(dataArray).map((repo) => {
+    return { name: repo.name, stars: repo.stargazers_count };
+  });
+  return filteredData;
 };
 
 // FUCNTIONS TO RETURN THE 5 LAST UPDATED REPOS
 
-const getLastUpdatedRepos = async () => {
-  try {
-    const dataArray = await getArrayOfData();
-    const sortedData = sortDateData(dataArray);
-    const lastFiveRepos = getTopFive(sortedData).map((repo) => {
-      return { name: repo.name, stars: repo.updated_at };
-    });
-    return lastFiveRepos;
-  } catch (error) {
-    console.log(error);
-  }
+const getLastUpdatedRepos = (dataArray) => {
+  const sortedData = sortDateData(dataArray);
+  const lastFiveRepos = getTopFive(sortedData).map((repo) => {
+    return { name: repo.name, updated_date: repo.updated_at };
+  });
+  return lastFiveRepos;
 };
 
 const getTopFive = (dataArray) => {
@@ -60,14 +49,9 @@ const sortDateData = (dataArray) => {
 
 //FUNCTION TO GET THE SUM OF ALL REPOS STARS
 
-const getSumOfReposStars = async () => {
-  try {
-    const dataArray = await getArrayOfData();
-    const sumOfStars = getSum(dataArray);
-    return sumOfStars;
-  } catch (error) {
-    console.log(error);
-  }
+const getSumOfReposStars = (dataArray) => {
+  const sumOfStars = getSum(dataArray);
+  return sumOfStars;
 };
 
 const getSum = (dataArray) => {
@@ -78,4 +62,9 @@ module.exports = {
   getReposMoreThanFiveStars: getReposMoreThanFiveStars,
   getLastUpdatedRepos: getLastUpdatedRepos,
   getSumOfReposStars: getSumOfReposStars,
+  getArrayOfData: getArrayOfData,
+  getSum: getSum,
+  sortDateData: sortDateData,
+  getTopFive: getTopFive,
+  getFilteredsStargazers: getFilteredsStargazers,
 };
