@@ -41,7 +41,7 @@ const getTopFive = (dataArray) => {
   return dataArray.slice(0, 5);
 };
 
-const sortDateData = (dataArray) => {
+const sortDataByDate = (dataArray) => {
   return dataArray.sort(
     (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
   );
