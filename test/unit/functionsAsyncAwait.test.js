@@ -10,7 +10,7 @@ const {
 
 const { data } = require("../fixtures/data.js");
 
-describe("Test of functions to get the repos with more than five stars", () => {
+describe("getFilteredsStargazers", () => {
   test("returns an array with all information about the repos with more than 5 stars", () => {
     expect(getFilteredsStargazers(data)).toEqual([
       {
