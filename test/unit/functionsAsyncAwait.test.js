@@ -2,7 +2,6 @@ const {
   getFilteredsStargazers,
   getTopFive,
   sortDataByDate,
-  getSum,
   getSumOfReposStars,
   getReposMoreThanFiveStars,
   getLastUpdatedRepos,
@@ -41,7 +40,7 @@ describe("getFilteredsStargazers", () => {
     ]);
   });
 
-  test("returns a mapped array that has the name and the stars of the repos with more than 5 stars", () => {
+  test("returns an array with the name and the stars of repos with more than 5 stars", () => {
     expect(getReposMoreThanFiveStars(data)).toEqual([
       {
         name: "repo1",
@@ -67,8 +66,8 @@ describe("getFilteredsStargazers", () => {
   });
 });
 
-describe("Test of functions to get the top five last updated repos", () => {
-  test("returns an array with all information about the top five repos", () => {
+describe("getLastUpdatedRepos", () => {
+  test("returns an array with the top five repos", () => {
     expect(getTopFive(data)).toEqual([
       {
         name: "repo1",
@@ -98,7 +97,7 @@ describe("Test of functions to get the top five last updated repos", () => {
     ]);
   });
 
-  test("returns an array with the repos sorted in descending order respect to the date", () => {
+  test("returns an array with repos sorted in descending order based on the date", () => {
     expect(sortDataByDate(data)).toEqual([
       {
         name: "repo10",
@@ -179,48 +178,8 @@ describe("Test of functions to get the top five last updated repos", () => {
   });
 });
 
-describe("Test of functions to get the sum of all the repos stars", () => {
+describe("getSumOfReposStars", () => {
   test("returns the sum of all the repos stars", () => {
     expect(getSumOfReposStars(data)).toEqual(61);
   });
 });
-
-/*
-jest.mock("./functions");
-
-const { getFilteredStargazers, getData } = require("./functions");
-
-test("should return the repos with more than 5 stars", () => {
-  console.log(typeof getData);
-  getData().then((data) => {
-    const dataArray = Object.values(data);
-    expect(getFilteredStargazers(dataArray)).toEqual([
-      {
-        name: "repo1",
-        stargazers_count: 10,
-        updated_at: "2020-11-18T12:00:00Z",
-      },
-      {
-        name: "repo5",
-        stargazers_count: 9,
-        updated_at: "2020-11-18T12:00:00Z",
-      },
-      {
-        name: "repo6",
-        stargazers_count: 10,
-        updated_at: "2020-11-18T12:00:00Z",
-      },
-      {
-        name: "repo9",
-        stargazers_count: 6,
-        updated_at: "2020-11-18T12:00:00Z",
-      },
-      {
-        name: "repo10",
-        stargazers_count: 8,
-        updated_at: "2020-11-18T12:00:00Z",
-      },
-    ]);
-  });
-});
-*/
