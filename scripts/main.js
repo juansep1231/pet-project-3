@@ -11,6 +11,4 @@ getArrayOfData()
     console.log(getLastUpdatedRepos(data));
     console.log(getSumOfReposStars(data));
   })
-  .catch((error) => {
-    console.log(error);
-  });
+  .catch(console.log);
