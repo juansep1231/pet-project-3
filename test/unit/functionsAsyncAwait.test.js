@@ -1,7 +1,7 @@
 const {
   getFilteredsStargazers,
   getTopFive,
-  sortDateData,
+  sortDataByDate,
   getSum,
   getSumOfReposStars,
   getReposMoreThanFiveStars,
@@ -99,7 +99,7 @@ describe("Test of functions to get the top five last updated repos", () => {
   });
 
   test("returns an array with the repos sorted in descending order respect to the date", () => {
-    expect(sortDateData(data)).toEqual([
+    expect(sortDataByDate(data)).toEqual([
       {
         name: "repo10",
         stargazers_count: 8,
