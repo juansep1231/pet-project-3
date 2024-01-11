@@ -64,7 +64,7 @@ module.exports = {
   getSumOfReposStars: getSumOfReposStars,
   getArrayOfData: getArrayOfData,
   getSum: getSum,
-  sortDateData: sortDateData,
+  sortDataByDate: sortDataByDate,
   getTopFive: getTopFive,
   getFilteredsStargazers: getFilteredsStargazers,
 };
