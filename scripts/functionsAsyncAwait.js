@@ -13,7 +13,7 @@ const getData = async () => {
 
 const getArrayOfData = async () => {
   const data = await getData();
-  return (dataArray = Object.values(data));
+  return Object.values(data);
 };
 
 const getFilteredsStargazers = (data) => {
