@@ -9,6 +9,19 @@ const getData = async () => {
   }
 };
 
+//FUNCTION TO CHECK IF THE DATA IS EMPTY, NULL OR UNDEFINED
+const checkEmptyData = (dataArray) => {
+  return dataArray === undefined || dataArray === null || dataArray.length <= 0;
+};
+
+//FUNCTION TO EXCEUTE A FUNCTION IF DATA IS NOT EMPTY, NULL OR UNDEFINED
+const checkEmptyDataAndExecuteFunction = (dataArray, executeFunction) => {
+  if (checkEmptyData(dataArray)) {
+    return [];
+  }
+  return executeFunction(dataArray);
+};
+
 // FUCNTIONS TO RETURN THE REPOS WIHT MORE THAN FIVE STARS
 
 const getArrayOfData = async () => {
@@ -16,46 +29,49 @@ const getArrayOfData = async () => {
   return Object.values(data);
 };
 
-const getFilteredsStargazers = (data) => {
-  return data.filter((repo) => repo.stargazers_count > 5);
+const getFilteredsStargazers = (dataArray) => {
+  return checkEmptyDataAndExecuteFunction(dataArray, (data) =>
+    data.filter((repo) => repo.stargazers_count > 5)
+  );
 };
 
 const getReposMoreThanFiveStars = (dataArray) => {
-  const filteredData = getFilteredsStargazers(dataArray).map((repo) => {
-    return { name: repo.name, stars: repo.stargazers_count };
-  });
-  return filteredData;
+  return checkEmptyDataAndExecuteFunction(dataArray, (data) =>
+    getFilteredsStargazers(data).map((repo) => {
+      return { name: repo.name, stars: repo.stargazers_count };
+    })
+  );
 };
 
 // FUCNTIONS TO RETURN THE 5 LAST UPDATED REPOS
 
 const getLastUpdatedRepos = (dataArray) => {
-  const sortedData = sortDateData(dataArray);
-  const lastFiveRepos = getTopFive(sortedData).map((repo) => {
-    return { name: repo.name, updated_date: repo.updated_at };
+  return checkEmptyDataAndExecuteFunction(dataArray, (data) => {
+    const sortedData = sortDataByDate(data);
+    return getTopFive(sortedData).map((repo) => {
+      return { name: repo.name, updated_date: repo.updated_at };
+    });
   });
-  return lastFiveRepos;
 };
 
 const getTopFive = (dataArray) => {
-  return dataArray.slice(0, 5);
+  return checkEmptyDataAndExecuteFunction(dataArray, (data) =>
+    data.slice(0, 5)
+  );
 };
 
 const sortDataByDate = (dataArray) => {
-  return dataArray.sort(
-    (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-  );
+  return checkEmptyDataAndExecuteFunction(dataArray, (data) => {
+    return data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+  });
 };
 
 //FUNCTION TO GET THE SUM OF ALL REPOS STARS
 
 const getSumOfReposStars = (dataArray) => {
-  const sumOfStars = getSum(dataArray);
-  return sumOfStars;
-};
-
-const getSum = (dataArray) => {
-  return dataArray.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+  return checkEmptyDataAndExecuteFunction(dataArray, (data) =>
+    data.reduce((acc, repo) => acc + repo.stargazers_count, 0)
+  );
 };
 
 module.exports = {
@@ -63,7 +79,6 @@ module.exports = {
   getLastUpdatedRepos: getLastUpdatedRepos,
   getSumOfReposStars: getSumOfReposStars,
   getArrayOfData: getArrayOfData,
-  getSum: getSum,
   sortDataByDate: sortDataByDate,
   getTopFive: getTopFive,
   getFilteredsStargazers: getFilteredsStargazers,
