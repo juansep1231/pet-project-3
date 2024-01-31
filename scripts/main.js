@@ -1,6 +1,14 @@
-const { getReposMoreThanFiveStars: getReposMoreThanFiveStars } = require("./functions");
-const { getLastUpdatedRepos: getLastUpdatedRepos } = require("./functions");
+const {
+  getReposMoreThanFiveStars,
+  getLastUpdatedRepos,
+  getSumOfReposStars,
+  getArrayOfData,
+} = require("./functionsAsyncAwait");
 
-getReposMoreThanFiveStars().then(data => console.log(data));
-
-getLastUpdatedRepos().then(data => console.log(data));
+getArrayOfData()
+  .then((data) => {
+    console.log(getReposMoreThanFiveStars(data));
+    console.log(getLastUpdatedRepos(data));
+    console.log(getSumOfReposStars(data));
+  })
+  .catch(console.log);
